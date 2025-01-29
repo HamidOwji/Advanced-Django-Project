@@ -4,7 +4,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post
 from django.shortcuts import get_object_or_404
 from .forms import PostForm
-# Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Function Base View show a template
 ''' 
@@ -43,7 +44,7 @@ class RedirectToMaktab(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return super().get_redirect_url(*args, **kwargs)
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin,ListView):
     queryset = Post.objects.all()
     # model = Post
     context_object_name = 'posts'
@@ -54,10 +55,10 @@ class PostListView(ListView):
     #     posts = Post.objects.filter(status=True)
     #     return posts
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # fields = ['author', 'title', 'content','status', 'category', 'published_date']
     form_class = PostForm
@@ -67,7 +68,7 @@ class PostCreateView(CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostEditView(UpdateView):
+class PostEditView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     success_url = '/blog/post/'
