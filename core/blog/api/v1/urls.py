@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .v1 import views
+from . import views
 
 app_name = "api-v1"
 
