@@ -22,6 +22,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+    def get_absolute_api_url(self):
+        from django.urls import reverse
+        return reverse('blog:api-v1:post-detail', kwargs={'pk': self.pk})
+
+    
 class Category(models.Model):
     """
     this is a class to define categories for blog table
