@@ -147,5 +147,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 # restframework settings
 
 REST_FRAMEWORK = { 
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' 
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     }
