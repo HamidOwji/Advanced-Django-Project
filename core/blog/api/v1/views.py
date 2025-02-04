@@ -10,6 +10,8 @@ from rest_framework import viewsets
 from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import action
 from .permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 # Example for Function Based View
 """
@@ -114,6 +116,10 @@ class PostModelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'author','status']
+
+
 
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
