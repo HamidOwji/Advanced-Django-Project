@@ -20,6 +20,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.email
 
+
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
     """
