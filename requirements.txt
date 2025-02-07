@@ -10,5 +10,10 @@ django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
 
+
 # email third party modules
 django-mail-templated
+
+# refactoring and tests
+black
+flake8
